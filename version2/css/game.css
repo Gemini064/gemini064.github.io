@@ -1,0 +1,74 @@
+body {
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100vw;
+}
+.game {
+	overflow: hidden;
+  position: relative;
+  max-width: 550px;
+  max-height: 400px;
+}
+.background {
+	background-color: rgba(43,109,125,255);
+	/*table-layout: fixed;*/
+	border-spacing: 0;
+}
+.background td {
+	padding: 0;
+}
+.wall {
+	background-color: rgba(82,159,156,255);
+}
+.role {
+	position: absolute;
+}
+.player {
+	z-index: 1000;
+	background-color: rgba(134,223,58,255);
+}
+.direc {
+	background: rgba(168,50,74,255);
+	position: absolute;
+}
+.enemy{
+	background-color: rgba(216,79,11,255);
+}
+.fainted {
+	background-color: rgba(90,37,12,255);
+}
+.food {
+  background-color: rgba(242,187,27,255);
+  border-radius: 100%;
+}
+.rock{
+	/*background-color: rgba(107,153,176,255);*/
+	z-index: 500;
+	background: -webkit-radial-gradient(white, rgba(107,153,176,255));
+	background: -moz-radial-gradient(white, rgba(107,153,176,255));
+	background: -ms-radial-gradient(white, rgba(107,153,176,255));
+	background: -o-radial-gradient(white, rgba(107,153,176,255));
+	background: radial-gradient(white, rgba(107,153,176,255));
+}
+.placed .moving{
+	opacity: 1;
+}
+.eaten{
+	opacity: 0;
+}
+#playerStatus {
+	border: 1px solid black;
+	width: 15px;
+	height: 15px;
+	margin: 0px 15px;
+}
+#winPic {
+	display: none;
+	width: 550pt;
+	height: 400pt;
+}

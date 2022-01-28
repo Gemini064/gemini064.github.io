@@ -76,7 +76,7 @@ State.prototype.update = function(time, keys) {
 	let newState = new State(this.status, roles, this.level);
 
 	if (newState.status !== "in progress") return newState;
-	// To Do
+	
 	for (let role of roles) {
 		if (role.type != "player")
 			newState = role.collide(newState, keys);
@@ -96,24 +96,24 @@ class Player {
 		this.status = status;
 	}
 	static create(position) {
-		return new Player(position.plus(new Vector(0, 0)), new Vector(0, 0), "front", "empty");
+		return new Player(position, new Vector(0, 0), "front", "empty");
 	}
 	get type() {
 		return "player";
 	}
 }
-Player.prototype.size = new Vector(0.8, 0.8);
+Player.prototype.size = new Vector(0.93, 0.93);
 
 const PLAYER_SPEED = 5;
 let countX = 0, countY = 0;
 Player.prototype.update = function(state, time, keys) {
-	let xSpeed = 0, ySpeed = 0;
+  let xSpeed = 0, ySpeed = 0;
   let face = this.face;
   if (keys.ArrowLeft) {
   	xSpeed -= PLAYER_SPEED;
   	face = "left";
   }
-	else if (keys.ArrowRight) {
+  else if (keys.ArrowRight) {
 		xSpeed += PLAYER_SPEED;
 		face = "right";
 	}
@@ -125,17 +125,17 @@ Player.prototype.update = function(state, time, keys) {
 		ySpeed += PLAYER_SPEED;
 		face = "front";
 	}
-	
+
 	let position = this.position;
 
 	let xDist = 0, yDist = 0;
-	if (Math.abs(xSpeed * time) >= 0.083) {
+	if (Math.abs(xSpeed * time) >= 0.0832) {
 		countX = (++countX) % 5;
 		if (countX == 4) {
 			xDist = (xSpeed > 0)? 1: -1;
 		}
 	}
-	if (Math.abs(ySpeed * time) >= 0.083) {
+	if (Math.abs(ySpeed * time) >= 0.0832) {
 		countY = (++countY) % 5;
 		if (countY == 4) {
 			yDist = (ySpeed > 0)? 1: -1;
@@ -152,11 +152,17 @@ Player.prototype.update = function(state, time, keys) {
 }
 
 class Enemy {
-	constructor(position, speed, status="active", timer=2) {
+	constructor(position, speed, status="active", timer=2, flip=false) {
 		this.position = position;
 		this.speed = speed;
+
+		// get hit by the rock or not
+		// 1. active, 2. fainted
 		this.status = status;
+
+		// after 2 seconds, the enemy would awake
 		this.timer = timer;
+		this.flip = flip;
 	}
 	static create(position, char) {
 		if (char == "=") {
@@ -172,11 +178,13 @@ class Enemy {
 	}
 }
 
+
+var eatEnemy = false;
 // enemy direction
 var enemyDirec = [new Vector(-1, 0), new Vector(1, 0), new Vector(0, -1), new Vector(0, 1)];
 Enemy.prototype.size = new Vector(0.93, 0.93);
 Enemy.prototype.collide = function(state, keys) {
-	if (this.status === "active" && dist(state.player.position, this.position) < 0.5) {
+	if (this.status === "active" && dist(state.player.position, this.position) < 0.6) {
 		return new State("lost", state.roles, state.level);
 	} else if (keys[" "] && state.player.status === "empty" && 
 		this.status === "fainted" && !continueThrow) {
@@ -201,6 +209,7 @@ Enemy.prototype.collide = function(state, keys) {
 
 		let status = state.status;
 		if (dist(center, playerCenter.plus(new Vector(offsetX, offsetY))) <= 1) {
+			eatEnemy = true;
 			newRoles = newRoles.filter(elt => elt != this);
 			if (!newRoles.some(elt => elt.type == "enemy")) status = "won";
 		}
@@ -210,25 +219,29 @@ Enemy.prototype.collide = function(state, keys) {
 	}
 }
 Enemy.prototype.update = function(state, time) {
-	if (this.timer <= 0) return new Enemy(this.position, this.speed, "active", 3);
-	if (this.status === "fainted") return new Enemy(this.position, this.speed, "fainted", this.timer - time);
+	if (this.timer <= 0) return new Enemy(this.position, this.speed, "active", 3, this.flip);
+	if (this.status === "fainted") return new Enemy(this.position, this.speed, "fainted", this.timer - time, this.flip);
 	let moved = this.position.plus(this.speed.times(time));
 	if (!state.level.touchWall(moved, this.size) &&
 		  !touchFood(state.food, moved) && !touchRock(state.rock, moved)){
-		return new Enemy(moved, this.speed);
+		let flip = this.flip;
+		if (this.speed.x < 0) flip = true;
+		else if (this.speed.x > 0) flip = false;
+		return new Enemy(moved, this.speed, "active", 2, flip);
 	} else {
-		// hitted by the rock
 		let position = new Vector(Math.round(this.position.x), Math.round(this.position.y));
 		for (let rock of state.rock) {
-			if (dist(rock.position, this.position) < 0.5) {
+			if (dist(rock.position, this.position) < 0.8) {
+				// hitted by the moving rock
 				if (rock.speed.x != 0 || rock.speed.y != 0) {
-					return new Enemy(position.plus(rock.speed.times(-1)), this.speed, "fainted", this.timer - time);
+					return new Enemy(position.plus(rock.speed.times(-1)), this.speed, "fainted", this.timer - time, this.flip);
 				}
 			}
 		}
 
-		let direcIdx = Math.floor((Math.random() * 10)) % 4;
-		return new Enemy(position, enemyDirec[direcIdx]);
+		// hit the rock/wall/food and change directions
+		let direcIdx = Math.floor(Math.random() * 10) % 4;
+		return new Enemy(position, enemyDirec[direcIdx], "active", 2, this.flip);
 	}
 }
 
@@ -236,6 +249,9 @@ Enemy.prototype.update = function(state, time) {
 class Food {
 	constructor(position) {
 		this.position = position;
+
+		// 0: avocado, 1: banana, 2: cherry, 3: strawberry
+		this.foodType = -1;
 	}
 	static create(position) {
 		return new Food(position);
@@ -244,7 +260,7 @@ class Food {
 		return "food";
 	}
 }
-Food.prototype.size = new Vector(0.5, 0.5);
+Food.prototype.size = new Vector(1, 1);
 Food.prototype.collide = function(state, keys) {
 	if (!keys[" "] || state.player.status === "eatRock") return state;
 	let newRoles = state.roles;
@@ -297,7 +313,6 @@ class Rock {
 var continueEat = false, continueThrow = false;
 Rock.prototype.size = new Vector(1, 1);
 Rock.prototype.collide = function(state) {
-	// return state;
 	let newRoles = state.roles;
 	if (this.status == "eaten") {
 		newRoles = newRoles.map(elt => {
@@ -355,8 +370,10 @@ Rock.prototype.update = function(state, time, keys) {
 	} else if (!keys[" "]){
 		continueEat = false;
 		continueThrow = false;
+		eatEnemy = false;
 		return this;
-	} else if (state.player.status == "eatRock") {
+	} else if (state.player.status == "eatRock" || eatEnemy) { // player cannot eat enemy and rock at the same time
+		// player already has another rock in his/her mouth
 		return this;
 	} else if (this.speed.x != 0 || this.speed.y != 0) {
 		return (continueThrow)? this: new Rock(this.position, new Vector(0, 0), "placed");
@@ -429,87 +446,6 @@ function drawLevel(level) {
 	);
 }
 
-class GameDisplay {
-	constructor(level) {
-		this.dom = createElt("div", {
-			class: "game"},
-		drawLevel(level));
-		document.body.appendChild(this.dom);
-	}
-	clear() {
-		this.dom.remove();
-	}
-}
-GameDisplay.prototype.syncState = function (state) {
-	if (this.roleLevel) this.roleLevel.remove();
-	this.roleLevel = drawRoles(state.roles);
-	this.dom.appendChild(this.roleLevel);
-	this.scrollView(state);
-}
-GameDisplay.prototype.scrollView = function (state) {
-	let width = this.dom.clientWidth;
-	let height = this.dom.clientHeight;
-	let margin = width / 3;
-
-	let player = state.player;
-	let center = player.position.plus(player.size.times(0.5)).times(SCALE);
-	
-	let left = this.dom.scrollLeft;
-	let right = left + width;
-	let top = this.dom.scrollTop;
-	let bottom = top + height;
-
-
-	if (center.x < left + margin) {
-		this.dom.scrollLeft = center.x - margin;
-	} else if (center.x > right - margin) {
-		this.dom.scrollLeft = center.x + margin - width;
-	}
-	if (center.y < top + margin) {
-		this.dom.scrollTop = center.y - margin;
-	} else if (center.y > bottom - margin) {
-		this.dom.scrollTop = center.y + margin - height;
-	}
-}
-
-var faceDirec = {
-	left: `left: 0px; top: ${0.465*SCALE - 2.5}px; width: 5px; height: 5px;`,
-	right: `left: ${0.93*SCALE - 5}px; top: ${0.465*SCALE - 2.5}px; width: 5px; height: 5px;`,
-	front: `left: ${0.465*SCALE - 2.5}px; top: ${0.93*SCALE - 5}px; width: 5px; height: 5px;`,
-	back: `left: ${0.465*SCALE - 2.5}px; top: 0px; width: 5px; height: 5px;`
-}
-
-function getPlayerDirec(size, face) {
-	let width = 5, height = 5;
-	let faceDirec = `width: ${width}px; height: ${height}px;`;
-	if (face === "left")
-		faceDirec += `left: 0px; top: ${size.y/2*SCALE - height/2}px;`;
-	else if (face === "right")
-		faceDirec += `left: ${size.x*SCALE - width}px; top: ${size.y/2*SCALE - height/2}px;`;
-  else if (face === "back")
-  	faceDirec += `left: ${size.x/2*SCALE - width/2}px; top: 0px;`;
-  else //front
-  	faceDirec += `left: ${size.x/2*SCALE - width/2}px; top: ${size.y*SCALE - height}px;`;
-	return faceDirec;
-}
-
-function drawRoles(roles) {
-	return createElt("div", {}, ...roles.map(role => {
-		let childElt = (role.type == "player")? 
-										[createElt("div", {class: "direc", style: `${getPlayerDirec(role.size, role.face)}`})]: 
-										[];
-
-		return createElt("div", {
-		class: `role ${role.type} ${role.status}`,
-		style: `width: ${role.size.x * SCALE}px;
-						height: ${role.size.y * SCALE}px;
-						left: ${(role.position.x + (1 - role.size.x)/2) * SCALE}px;
-						top: ${(role.position.y + (1 - role.size.y)/2) * SCALE}px`}, ...childElt)
-		
-	})
-	);
-}
-
 // touch
 function dist(pos1, pos2) {
 	return Math.sqrt(Math.pow(pos1.x - pos2.x, 2) + Math.pow(pos1.y - pos2.y, 2));
@@ -569,9 +505,9 @@ function runFrames(frameFunc) {
 	requestAnimationFrame(frame);
 }
 
-function runLevel(level) {
-	let state = State.initial(level);
-  let gameDisplay = new GameDisplay(level);
+function runLevel(level, Display) {
+  let state = State.initial(level);
+  let display = new Display(level);
 
   // the game will end 1 secound later after either winning or losing
   let countDown = 1;
@@ -579,14 +515,14 @@ function runLevel(level) {
   return new Promise(resolve => {
   	runFrames(timeStep => {
   		state = state.update(timeStep, KEYS);
-  		gameDisplay.syncState(state);
+  		display.syncState(state);
   		if (state.status === "in progress") {
   			return true;
   		} else if (countDown > 0) {
   			countDown -= timeStep;
   			return true;
   		} else {
-  			gameDisplay.clear();
+  			display.clear();
   			resolve(state.status);
   			return false;
   		}
@@ -604,15 +540,16 @@ function displayPlayerScore(status) {
 	else playerStatus.style.background = "black";
 }
 
-async function runGame(scripts) {
+async function runGame(scripts, Display) {
 	let status;
 	for (let i = 0; i < scripts.length;) {
-		status = await runLevel(new Level(scripts[i]));
+		status = await runLevel(new Level(scripts[i]), Display);
 		if (status == "won") i++;
 		else if (status == "lost") {
 			score = 0;
 			displayScore(score);
 		}
 	}
-	console.log(status);
+	let showWinPic = document.getElementById("winPic");
+	showWinPic.style.display = "block";
 }
