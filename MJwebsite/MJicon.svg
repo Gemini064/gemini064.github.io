@@ -1,0 +1,41 @@
+<svg version="1.1" id="layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 308.984 340.483" style="enable-background:new 0 0 308.984 340.483;"
+	 xml:space="preserve">
+<style type="text/css">
+<![CDATA[
+	.st0{fill:none;stroke:#E6C35C;stroke-width:2;stroke-miterlimit:10;}
+]]>
+</style>
+
+<defs>
+	<style type="text/css">
+		.st0 {
+			stroke-dasharray: 2500;
+			stroke-dashoffset: 0;
+			-webkit-animation: dash 6s linear forwards;
+			-o-animation: dash 6s linear forwards;
+			-moz-animation: dash 6s linear forwards;
+			animation: dash 6s linear forwards;
+		}
+		@-webkit-keyframes dash {
+			from {
+				stroke-dashoffset: 2500;
+			}
+			end {
+				stroke-dashoffset: 0;
+			}
+		}
+
+		#layer_1:hover .st0 {
+			fill: #E6C35C;
+		}
+	</style>
+</defs>
+
+<path class="st0" d="M19.401,46.567v4.333c0,0,34.333-1,36.333,22l-1.667,150.333c0,0-0.667,16.333-32.667,19.333v7h78v-7
+	c0,0-28-0.666-29.333-20.333v-44.333l0.333-86.333l1.333-0.667l69.333,135.666c0,0,0.333,48.998-5,56.998c0,0-18.667,35.666-51,45
+	l1.333,4.334c0,0,89.667-14.334,85.667-125l59-119.332l3-0.333v137.334c0,0-6.667,18.332-27.667,17.666l0.334,5l93-0.666v-5
+	c0,0-33.668-2.334-36.334-19.334l-2.333-140.666c0,0-7.999-35.332,33.667-30.999l0.666-5.001h-47.333h-13.667l-62.333,127.668
+	l1.333-141.666c0,0,1.668-12.333,28.334-11l0.333-5.667h-91l-0.333,5.333c0,0,27.333-1,29,11.333s1,136.667,1,136.667l-60-122
+	L19.401,46.567z"/>
+</svg>
