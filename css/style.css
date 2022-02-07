@@ -1,0 +1,369 @@
+body {
+	width: 100vw;
+	height: 100vh;
+}
+
+#homePageBody{
+	background: url(../img/MeDesktopV3_apng.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	margin: 0px;
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+/* under mediumButtonDiv */
+#mediumButtonDiv{
+	margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2%;
+    height: fit-content;
+    width: fit-content;
+}
+
+.mediumButton{
+	display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0px 18px 0px;
+}
+
+.mediumButton > a{
+	padding: 15px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 35px;
+    text-decoration: none;
+    border-radius: 10px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #FEC074;
+    border: 1px solid #FEC074;
+    box-shadow: -2px -2px 10px #ffffff, 2px 4px 6px #b0ab92;
+    transition: all 150ms linear;
+}
+
+.mediumButton > a:hover {
+	background: #FBD692;
+	border: 1px solid rgba(0, 0, 0, .05);
+	box-shadow: 1px 1px 2px #F5AD6C;
+	color: #F5AD6C;
+	text-decoration: none;
+	text-shadow: -1px -1px 0 white;
+	transition: all 250ms linear;
+}
+
+.goButton > a{
+	background: #FF8F69;
+	border-color: #FF8F69;
+	border-radius: 50%;
+}
+
+.goButton > a:hover{
+	background: -webkit-radial-gradient(rgb(255, 143, 105), rgb(179, 86, 55));
+	background: radial-gradient(rgb(255, 143, 105), rgb(179, 86, 55));
+	transition: all 150ms linear;
+	text-shadow: -1px -1px 0 rgba(0,0,0,0);
+	box-shadow: -2px -2px 10px #ffffff, 2px 4px 6px white;
+	color: white;
+	-webkit-filter: brightness(175%); /* Safari */
+    filter: brightness(175%);
+}
+
+@media only screen and (max-width: 470px) {
+	#homePageBody{
+		/*background: -webkit-linear-gradient(-180deg, rgb(243, 236, 209), rgb(245, 211, 178));
+		*/background: linear-gradient(-180deg, rgb(243, 236, 209), rgb(245, 211, 178));
+		background: url(../img/mobileMe.gif) no-repeat center center fixed;
+		-webkit-background-size: cover, 100% auto;
+		-moz-background-size: cover, 100% auto;
+		-o-background-size: cover, 100% auto;
+		background-size: cover, 100% auto;
+		overflow: hidden;
+	}
+	#mediumButtonDiv{
+		padding: 25px;
+		flex-direction: row;
+		align-items: flex-start;
+		width: 100%;
+	}
+	.mediumButton {
+		display: flex;
+    	flex-direction: row;
+    	justify-content: flex-start;
+	}
+	.mediumButton > a{
+		font-size: 22px;
+	    padding: 13px;
+	    border-radius: 5px;
+	    width: 15px;
+	    height: 15px;
+	    margin: 0px 5px 0px 0px;
+	}
+	.goButton > a{
+		border-radius: 50%;
+	}
+}
+
+/*menu section*/
+#menuBlock {
+	margin: 0;
+	background: #3F1228;
+	padding: 13px 26px;
+}
+#menuBlock .item {
+	font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
+	color: #F1E9DE;
+	padding: 7px;
+	margin: 0px 12px;
+	background: 0 0;
+	-webkit-transition: background .5s ease;
+    transition: background .5s ease;
+}
+#menuBlock .item:hover{
+	background: #593546;
+}
+#menuBlock .active.item{
+	background: #593546;
+}
+#goBackBtn{
+	font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
+	background: 0 0;
+	padding: 7px;
+	margin: 0px 12px;
+    align-self: center;
+    color: #A67A72;
+    border: solid 1px #A67A72;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+#goBackBtn:hover{
+	color: #F1E9DE;
+	border: solid 1px #F1E9DE;
+}
+
+
+
+/*project section*/
+#mainBlock{
+	margin: 0;
+	background: #F1E9DE;
+	padding: 0px;
+	/*box-shadow: 0 -12px 15px rgba(138, 90, 68, .3);*/
+}
+#projectSection {
+	background: rgb(237,225,206);
+	border: 1px solid rgba(0, 0, 0, 0);
+}
+#webGameCard, #appCard, #mjWebCard, #beeCard{
+	background: rgb(245,245,243);
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    width: 90%;
+    margin-top: 25px;
+    box-shadow: -12px 11px 15px rgb(220 204 185);
+}
+
+.descTitle {
+	z-index: 5;
+    position: relative;
+    padding-top: 25px;
+    color: rgb(127, 127, 127);
+}
+
+#beeCard {
+	background: #f1be50;
+	min-height: 350px;
+	position: relative;
+}
+
+#beeRect {
+	height: 100%;
+	width: 45%;
+	background: #245061;
+	position: absolute;
+	left: 10%;
+	z-index: 2;
+}
+
+#webGameCard a, #appCard a, #mjWebCard a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: black;
+}
+#beeCard a {
+	color: white;
+}
+
+#webGameCard a:hover, 
+#appCard a:hover, 
+#mjWebCard a:hover{
+	color: #245061;
+}
+#beeCard a:hover {
+	color: lightblue;
+}
+
+#webGameCard p a {
+	display: inline;
+	font-weight: bold;
+}
+#webGameCard img, #appCard img, #mjWebCard img, #beeCard img{
+	box-shadow: -8px 8px 12px rgb(0, 0, 0, .2);
+}
+#webGameCard .ui.image,  
+#appCard .ui.image, 
+#mjWebCard .ui.image{
+	width: 90%;
+	max-width: 400px;
+	min-height: 305px;
+	transition: all 250ms linear;
+}
+#beeCard .ui.image{
+	width: 80%;
+	max-width: 250px;
+	z-index: 3;
+}
+
+#webGameCard .ui.image:hover,  
+#appCard .ui.image:hover, 
+#mjWebCard .ui.image:hover,
+#beeCard .ui.image:hover {
+	filter: brightness(50%);
+}
+#appCard{
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+.rightRect, .leftRect{
+	width: 60%;
+	height: 50px;
+	position: absolute;
+	right: 0px;
+	top: 57px;
+}
+.leftRect {
+	left: 0px;
+}
+
+.designBlock .column{
+	overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*profile section*/
+#profileSection {
+	border: 1px solid rgba(0, 0, 0, 0);
+}
+.ui.segment {
+    -webkit-box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0); 
+    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0); 
+    border: 1px solid rgba(34,36,38,0);
+}
+#greetImg{
+	width: 60%;
+	position: absolute;
+	right: 0%;
+	top: 50px;
+}
+.topLeft{
+	width: 100%;
+	margin: -2px;
+}
+.topRight{
+	width: 45%;
+	margin: -0.1px;
+	--animate-delay: 2s;
+}
+.bottomRight{
+	position: absolute;
+	width: 80%;
+	right: 0%;
+}
+.headerArea {
+	font-size: 50px;
+	font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
+	margin-bottom: 20px;
+}
+
+.ui.grid {
+    margin-left: 0rem;
+    margin-right: 0rem;
+}
+
+#contactBtnDiv > .ui.button {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	margin: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: inset 0 0 3px 3px #DCD0BF;
+	border: 1px solid #EBDFCF;
+	background: -webkit-linear-gradient(180deg, rgb(241, 233, 222), rgb(218, 199, 174));
+	background: linear-gradient(180deg, rgb(241, 233, 222), rgb(218, 199, 174));
+	transition: all 500ms ease;
+}
+#contactBtnDiv > .ui.button > i{
+	font-size: 20px;
+	color: #A67A72;
+	transition: all 500ms ease;
+}
+#contactBtnDiv > .ui.button:hover{
+	border: 1px solid #C2B19B;
+	background: -webkit-linear-gradient(180deg, rgb(255, 255, 255), rgb(241, 233, 222));
+	background: linear-gradient(180deg, rgb(255, 255, 255), rgb(241, 233, 222));
+}
+#contactBtnDiv > .ui.button:hover > i{
+	font-size: 20px;
+	color: #593546;
+}
+.cardLink {
+	width: 90%;
+}
+.cardLink > .ui.card {
+	min-height: 300px;
+	background: #dfcfc8;
+	width: 100%;
+	box-shadow: -4px 4px 9px rgba(0, 0, 0, .3),
+				inset -4px 4px 9px rgba(0, 0, 0, 0);
+	padding: 15px;
+	transition: all 500ms ease;
+}
+.cardLink > .ui.card:hover {
+	box-shadow: -4px 4px 9px rgba(0, 0, 0, 0), 
+				inset -4px 4px 9px rgba(0, 0, 0, .2);
+}
+
+@media only screen and (max-width: 991px) {
+	#greetImg{
+		right: 20%;
+	}
+	.topLeft{
+		width: 90%;
+	}
+	.topRight{
+		width: 60%;
+	}
+	.bottomRight{
+		width: 100%;
+	}
+	.cardLink > .ui.card {
+		min-height: 250px;
+	}
+}
