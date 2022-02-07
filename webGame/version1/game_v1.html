@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Square Meal</title>
+	<link rel="stylesheet" href="css/game.css">
+	<script src="code/game.js"></script>
+	<script src="code/levels.js"></script>
+</head>
+<body>
+	<div style="display: flex; flex-direction: row;">
+		<div>score: <span id="score">0</span></div>
+		<div id="playerStatus"></div>
+	</div>
+	<script>
+		runGame(GAME_LEVELS);
+	</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<title>Square Meal Web Game</title>
+	<style>
+		body {
+			width: 100vw;
+			height: 100vh;
+			background: brown;
+		}
+		h1 {
+			text-align: center;
+		    margin: 0;
+		    padding: 30px;
+		    color: white;
+		    font-size: 30px;
+		}
+		.centerArea {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100vw;
+		}
+		.centerArea .button {
+			margin: 15px;
+			cursor: pointer;
+		}
+		.ruleArea {
+			background: white;
+			margin: 25px auto;
+			padding: 25px;
+			width: 80%;
+		}
+		.ruleArea p {
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Square Meal Web Game</h1>
+	<div class="centerArea">
+		<div>
+			<a href="./version1/game_v1.html">
+				<div class="ui animated inverted button" tabindex="0">
+			  	<div class="visible content">Version 1</div>
+				  <div class="hidden content">
+				    <i class="right arrow icon"></i>
+				  </div>
+				</div>
+			</a>
+		</div>
+
+		<div>
+			<a href="./version2/game_v2.html">
+				<div class="ui animated inverted primary button" tabindex="0">
+			  	<div class="visible content">Version 2</div>
+				  <div class="hidden content">
+				    <i class="right arrow icon"></i>
+				  </div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="ruleArea">
+		<h2>Rules</h2>
+		<p>
+			Use ↑ ↓ → ← to control the direction, press spacebar to eat food, carry the rock and shoot at monsters. <br>
+			If monsters are hitted by the rock, they would faint, then you can press spacebar to collect them. <br>
+			If you don't collect those fainted monsters, they would be active again soon. <br>
+			You will lose when hitted a monster! <br>
+			You will win when all monsters are collected!
+		</p> 
+		<p>
+			The idea of this game is from <a href="https://www.miniclip.com/games/square-meal/en/">Nitrome's Square Meal Game</a>
+		</p>
+		<img src="./version2/img/win.png" alt="when you win!!!" style="width: 50%">
+	</div>
+	
+	<script src="./js/jquery-3.1.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>
