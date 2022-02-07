@@ -145,7 +145,88 @@ const projectSection = React.createElement('div', {id: 'projectSection'},
 		  React.createElement(
 		    Grid.Column,
 		    { mobile: 16, tablet: 8, computer: 8, style: {display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0'} },
-		    React.createElement(Image, { src: './img/project/bee_cover.jpg' }),
+				React.createElement(Image, { src: './img/project/bee_cover.jpg', "data-toggle": "modal", "data-target": "#ModalCarousel" }),
+			  React.createElement(
+			    "div",
+			    { "class": "modal fade", id: "ModalCarousel", tabindex: "-1", role: "dialog", "aria-labelledby": "ModalCarouselLabel" },
+			    React.createElement(
+			      "div",
+			      { "class": "modal-dialog", role: "document" },
+			      React.createElement(
+			        "div",
+			        { "class": "modal-content" },
+			        React.createElement(
+			          "div",
+			          { id: "carousel-modal-demo", "class": "carousel slide", "data-ride": "carousel", "data-interval": "2000" },
+			          React.createElement(
+			            "ol",
+			            { "class": "carousel-indicators" },
+			            React.createElement("li", { "data-target": "#carousel-modal-demo", "data-slide-to": "0", "class": "active" }),
+			            React.createElement("li", { "data-target": "#carousel-modal-demo", "data-slide-to": "1" }),
+			            React.createElement("li", { "data-target": "#carousel-modal-demo", "data-slide-to": "2" }),
+			            React.createElement("li", { "data-target": "#carousel-modal-demo", "data-slide-to": "3" }),
+			            React.createElement("li", { "data-target": "#carousel-modal-demo", "data-slide-to": "4" }),
+			            React.createElement("li", { "data-target": "#carousel-modal-demo", "data-slide-to": "5" })
+			          ),
+			          React.createElement(
+			            "div",
+			            { "class": "carousel-inner" },
+			            React.createElement(
+			              "div",
+			              { "class": "item active" },
+			              React.createElement("img", { src: "./img/project/bee_cover.jpg", alt: "cover" }),
+			              React.createElement("div", { "class": "carousel-caption" })
+			            ),
+			            React.createElement(
+			              "div",
+			              { "class": "item" },
+			              React.createElement("img", { src: "./img/project/bee1.jpg", alt: "page1" }),
+			              React.createElement(
+			                "div",
+			                { "class": "carousel-caption" },
+			                React.createElement(
+			                  "p",
+			                  null,
+			                  "Page 1."
+			                )
+			              )
+			            ),
+			            React.createElement(
+			              "div", { "class": "item" },
+			              React.createElement("img", { src: "./img/project/bee2.jpg", alt: "page2" }),
+			              React.createElement("div", { "class": "carousel-caption" }, React.createElement("p", null, "Page 2."))
+			            ),
+			            React.createElement(
+			              "div", { "class": "item" },
+			              React.createElement("img", { src: "./img/project/bee3.jpg", alt: "page3" }),
+			              React.createElement("div", { "class": "carousel-caption" }, React.createElement("p", null, "Page 3."))
+			            ),
+			            React.createElement(
+			              "div", { "class": "item" },
+			              React.createElement("img", { src: "./img/project/bee4.jpg", alt: "page4" }),
+			              React.createElement("div", { "class": "carousel-caption" }, React.createElement("p", null, "Page 4."))
+			            ),
+			            React.createElement(
+			              "div",
+			              { "class": "item" },
+			              React.createElement("img", { src: "./img/project/bee5.jpg", alt: "page5" }),
+			              React.createElement("div", { "class": "carousel-caption" }, React.createElement("p", null, "Page 5."))
+			            )
+			          ),
+			          React.createElement(
+			            "a",
+			            { "class": "left carousel-control", href: "#carousel-modal-demo", "data-slide": "prev" },
+			            React.createElement("span", { "class": "icon-prev" })
+			          ),
+			          React.createElement(
+			            "a",
+			            { "class": "right carousel-control", href: "#carousel-modal-demo", "data-slide": "next" },
+			            React.createElement("span", { "class": "icon-next" })
+			          )
+			        )
+			      )
+			    )
+			  ),
 		    React.createElement('div', {id: "beeRect"})
 		  ),
 		  React.createElement(
@@ -416,5 +497,4 @@ const projectSection = React.createElement('div', {id: 'projectSection'},
     { mobile: 16, tablet: 16, computer: 16, style: {display: 'flex', justifyContent: 'center'} },
     React.createElement('p', { style: {color: '#593546'} }, 'Get In Touch'),
 	),
-
 );

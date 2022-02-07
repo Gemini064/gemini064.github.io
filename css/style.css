@@ -305,6 +305,10 @@ body {
     margin-right: 0rem;
 }
 
+#descDiv p {
+	font-size: 20px;
+}
+
 #contactBtnDiv > .ui.button {
 	border-radius: 50%;
 	width: 50px;
@@ -366,4 +370,19 @@ body {
 	.cardLink > .ui.card {
 		min-height: 250px;
 	}
+	#descDiv p {
+		font-size: 35px;
+	}
+	li {
+		line-height: 1.5em;
+	}
+}
+
+.fade.in {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+.carousel-inner>.item>a>img, .carousel-inner>.item>img {
+    max-width: 500px !important;
 }
