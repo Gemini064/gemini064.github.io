@@ -1,0 +1,254 @@
+@charset "utf-8";
+@import url('menu.css');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito+Sans:wght@900&display=swap');
+/* CSS Document */
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body{
+	min-height: 100vh;
+	position: relative;
+}
+
+
+/* banner */
+.banner{
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	font-family: 'Nunito Sans', sans-serif;
+}
+.banner-child-1{
+	padding: 50px;
+	width: 100%;
+	height: 50vh;
+}
+.banner-child-1 img{
+	padding: 10px;
+	width: 120px;
+	display: none;
+}
+.banner-child-2{
+	width: 100%;
+	height: 50vh;
+	text-align: center;
+	background: rgba(1, 1, 1, 0.8);
+}
+.banner-child-2 h1{
+	color: #ffffff;
+	font-size: 72px;
+	line-height: 1em;
+	text-shadow: -5px 5px rgba(1, 1, 1, 0.4),
+              -10px 10px rgba(1, 1, 1, 0.3),
+              -15px 15px rgba(1, 1, 1, 0.2),
+              -20px 20px rgba(1, 1, 1, 0.1),
+              -25px 25px rgba(1, 1, 1, 0.05);
+}
+.banner-child-2 h2{
+	color: #e6c35c;
+	font-size: 45px;
+	text-shadow: -5px 5px rgba(1, 1, 1, 0.4),
+              -10px 10px rgba(1, 1, 1, 0.3),
+              -15px 15px rgba(1, 1, 1, 0.2),
+              -20px 20px rgba(1, 1, 1, 0.1),
+              -25px 25px rgba(1, 1, 1, 0.05);
+}
+
+/* carousel albums */
+#album-body{
+	display: flex;
+	display: -webkit-flex;
+	-webkit-justify-content: center;
+	  justify-content: center;
+	-webkit-flex-direction: column;
+	  flex-direction: column;
+	-webkit-align-items: center;
+	  align-items: center;
+	background: url("../img/album/bck.png");
+	/* background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%); */
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.card-img-top{
+	width: 65%;
+	box-shadow: -10px 10px 5px rgba(0, 0, 0, 0.5);
+}	
+.controls-top{
+	clear: both;
+	text-align: right;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	padding: 25px;
+}
+.carousel-item .row .col-md-4{
+	text-align: center;
+}
+.carousel-item .row .col-md-4 img{
+	width: 70%;
+}
+.carousel-item .row .col-md-4 img:hover{
+	border: 5px solid #ffffff;
+	filter: brightness(150%);
+}
+.carousel-item .row .col-md-4 p{
+	color: #ffffff;
+	padding: 10px;
+}
+.btn-floating{
+	padding: 10px;
+	font-size: 36px;
+}
+.btn-floating i{
+	color: #ffffff;
+}
+.btn-floating i:hover{
+	filter: brightness(30%);
+}
+
+/* vertical carousel */
+#verticalCarousel{
+	width: 100%;
+	text-align: center;
+	margin: auto;
+}
+#vertical-part .card{
+	background: transparent;
+	border: none;
+	height: 100%;
+}
+#vertical-part .card .btn{
+	background: #e6c35c;
+	border-radius: 25px;
+	width: 80px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+}
+#vertical-part .card .btn:hover{
+	filter: brightness(30%);
+}
+#vertical-part .card .btn.btn-next{
+	right: 0;
+	bottom: 20px;
+}
+
+#vertical-part .card .btn.btn-prev{
+	right: 0;
+	bottom: 60px;
+}
+#vertical-part .card .btn i{
+	font-size: 30px;
+	color: #000000;
+}
+#verticalCarousel .carousel-inner .carousel-item .row img{
+	margin: auto;
+	border: 1px solid #ffffff;
+	width: 80%;
+}
+#verticalCarousel .carousel-inner .carousel-item p{
+	color: #ffffff;
+	font-size: 21px;
+	padding: 15px;
+	margin: 0;
+	line-height: 1em;
+}
+#verticalCarousel .carousel-inner .carousel-item small{
+	color: #e6c35c;
+	margin: 0;
+	font-size: 15px;
+}
+
+#verticalCarousel .carousel-item-next.carousel-item-left,
+#verticalCarousel .carousel-item-prev.carousel-item-right {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+#verticalCarousel .carousel-item-next,
+#verticalCarousel .active.carousel-item-right {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100% 0);
+}
+
+#verticalCarousel .carousel-item-prev,
+#verticalCarousel .active.carousel-item-left {
+-webkit-transform: translate3d(0,-100%, 0);
+        transform: translate3d(0,-100%, 0);
+}
+
+/* horizontal carousel */
+#horizontal-part{
+	display: none;
+}
+
+/* For tablets */
+@media only screen and (min-width: 768px) { 
+	.banner-child-2 h1{
+		font-size: 100px;
+	}
+	.banner-child-2 h2{
+		font-size: 70px;
+	}
+	.carousel-item .row .col-md-4 img{
+		width: 100%;
+	}
+	#horizontal-part{
+		display: block;
+	}
+	#vertical-part{
+		display: none;
+	}
+}
+
+/* For desktop */
+@media only screen and (min-width: 1200px) {
+	.banner-child-1{
+		width: 100%;
+		height: 100vh;
+	}
+	.banner-child-1 img{
+		display: block;
+	}
+	.banner-child-2{
+		width: 100%;
+		height: 100vh;
+		text-align: left;
+		display: flex;
+		display: -webkit-flex;
+		-webkit-justify-content: center;
+		  justify-content: center;
+		-webkit-flex-direction: column;
+		  flex-direction: column;
+		background: transparent;
+	}
+	.banner-child-2 h1{
+		font-size: 100px;
+		line-height: 1em;
+	}
+	.banner-child-2 h2{
+		font-size: 70px;
+	}
+	#album-body{
+		background: url("../img/album/bck3.jpg");
+		/* background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%); */
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+	.carousel-item .row .col-md-4 img{
+		width: 65%;
+	}
+	.btn-floating{
+		background: #e6c35c;
+		border-radius: 25px;
+	}
+	.btn-floating:hover{
+		filter: brightness(30%);
+	}
+	.btn-floating i{
+		color: #000000;
+	}
+}

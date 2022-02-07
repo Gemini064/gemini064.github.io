@@ -1,0 +1,47 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito+Sans:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+/* CSS Document */
+
+*{
+	padding:0;
+	margin:0;	
+}
+
+.other{
+    min-height: 600px;
+    background: #f1ecec;
+    color: #000000;
+    font-family: 'Nunito Sans', sans-serif;
+}
+.other img{
+    margin: auto;
+    width: 90%;
+}
+
+.other h1{
+    font-size: 36px;
+    padding: 10px;
+}
+
+.other p{
+    font-size: 18px;
+    padding: 20px;
+    line-height: 1.5em;
+}
+
+.translation p{
+    font-family: 'Noto Sans TC', sans-serif;
+}
+.parallax-window {
+    min-height: 600px;
+}
+
+/* For desktop */
+@media only screen and (min-width: 1200px){
+    .other img{
+        margin: auto;
+        padding: 20px;
+        width: 100%;
+    }
+}
